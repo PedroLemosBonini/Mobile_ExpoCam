@@ -1,4 +1,5 @@
 import { CameraView, useCameraPermissions } from "expo-camera";
+import { createEvento } from "./axios/api";
 import { useRef, useState } from "react";
 import {
   Button,
@@ -34,6 +35,22 @@ export default function Cam() {
       const data = await camRef.current.takePictureAsync();
       setCapturedPhoto(data.uri);
       setOpen(true);
+
+      // Simular um formulário
+      const form = {
+        nome:"Evento teste",
+        descricao:"Evento teste imagem mobile",
+        data_hora:"2025-09-03 00:00:00",
+        local:"Franca",
+        fk_id_organizador:1
+      }
+
+      try {
+        const response = await createEvento(form,data.uri)
+        console.log("Evento criado", response.data)
+      } catch (error) {
+        console.log("Error", error.response.data.error)
+      }
     }
   }
 
