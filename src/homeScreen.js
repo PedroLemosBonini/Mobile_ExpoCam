@@ -24,6 +24,10 @@ const HomeScreen = () => {
       }
     }
 
+    const handleListEventos = () => {
+      navigation.navigate("Eventos");
+  }
+
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <View style={{marginBottom: 20}}>
@@ -35,6 +39,9 @@ const HomeScreen = () => {
         onPress={ledToggle}
         color={stateLED.value ? "red" : "green"}
         />
+      </View>
+      <View style={{marginTop: 20}}>
+      <Button title="Abrir ListEventos" onPress={handleListEventos} color="blue" />
       </View>
     </View>
   );
